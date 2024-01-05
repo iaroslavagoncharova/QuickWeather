@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>QuickWeather</title>
+    <script src="weather-main.js" type="module"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100;300;400&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/438aeadf51.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <main>
+        <h1>QuickWeather</h1>
+        <h2>Your weather, right here, right now. </h2>
+        <div id="content">
+        <div id="weather-form">
+        <form action="" method="get">
+            <input type="text" name="city" placeholder="Enter a city name or a postal code">
+            <input type="submit" value="Get Weather" id="submit-button">
+        </form>
+        <a href="#">Find my location</a>
+        </div>
+        <div id="weather-result">
+            <h3>Weather in <span class="city"></span></h3>
+            <div id="weather-icon"></div>
+            <div id="weather-description">Description: 
+                <span id="weather-description-value"></span>
+            </div>
+            <div id="weather-temperature">Temperature:
+                <span id="weather-temperature-value"></span>
+            </div>
+            <div id="weather-humidity">Humidity:
+                <span id="weather-humidity-value"></span>
+            </div>
+            <div id="weather-wind">Wind:
+                <span id="weather-wind-value"></span>
+            </div>
+        </div>
+        <div id="events">
+            <h4>Local events in <span class="city"></span></h4>
+        </div>
+        <div id="alerts-notifications">
+            <h4>Alerts &amp; Notifications</h4>
+            <div id="alerts">
+                <h5>Weather Alerts</h5>
+            </div>
+            <div id="notifications">
+                <h5>Notifications</h5>
+            </div>
+        </div>
+        <div id="customization">
+            <i class="fa-solid fa-sliders" id="customization-button"></i>
+            <div id="settings">
+                <div id="units">
+                    <h5>Units</h5>
+                    <div id="units-celcius">
+                      <input type="radio" name="units" id="units-celsius" value="celsius" class="units">
+                      <label for="units-celsius">Celsius</label>
+                    </div>
+                    <div id="units-fahrenheit">
+                      <input type="radio" name="units" id="units-fahrenheit" value="fahrenheit" class="units">
+                      <label for="units-fahrenheit">Fahrenheit</label>
+                    </div>
+                  </div>
+                <div id="theme-color">
+                    <h5>Theme Color</h5>
+                    <div id="theme-color-light">
+                        <input type="radio" name="theme-color" id="theme-color-light" value="light" class="theme-color">
+                        <label for="theme-color-light">Light</label>
+                    </div>
+                    <div id="theme-color-dark">
+                        <input type="radio" name="theme-color" id="theme-color-dark" value="dark" class="theme-color">
+                        <label for="theme-color-dark">Dark</label>
+                    </div>
+                    <div id="weather-icon-style">
+                        <h5>Weather Icon Style</h5>
+                        <div id="weather-icon-style-color">
+                            <input type="radio" name="weather-icon-style" id="weather-icon-style-color" value="color" checked>
+                            <label for="weather-icon-style-color">Color</label>
+                        </div>
+                        <div id="weather-icon-style-outline">
+                            <input type="radio" name="weather-icon-style" id="weather-icon-style-outline" value="outline">
+                            <label for="weather-icon-style-outline">Outline</label>
+                    </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+    </main>
+</body>
+</html>
