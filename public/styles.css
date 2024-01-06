@@ -46,14 +46,18 @@ main {
 #weather-result {
     grid-column: 2 / 3;
     grid-row: 2 / 3;
+    display: none;
+    text-align: center;
 }
 #events {
     grid-column: 1 / 2;
     grid-row: 3 / 4;
+    display: none;
 }
 #alerts-notifications {
     grid-column: 2 / 3;
     grid-row: 3 / 4;
+    display: none;
 }
 h1 {
     font-size: 3rem;
@@ -76,4 +80,29 @@ h1 {
     background: rgb(15,12,41);
     background: linear-gradient(90deg, rgba(15,12,41,1) 0%, rgba(48,43,99,1) 35%, rgba(36,36,62,1) 100%);
     color: white;
+}
+
+.dark .fas {
+    color: white;
+}
+
+#customization-button {
+    position: fixed;
+    top: 148px;
+    left: 94px;
+}
+
+#weather-description {
+    font-size: 1.2rem;
+}
+#customization-button:hover {
+    cursor: pointer;
+}
+
+#customization {
+    position: relative;
+}
+
+.fas {
+    font-size: 1.5rem;
 }
