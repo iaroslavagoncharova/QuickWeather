@@ -14,44 +14,6 @@
     <main>
         <h1>QuickWeather</h1>
         <h2>Your weather, right here, right now. </h2>
-        <div id="content">
-        <div id="weather-form">
-        <form action="" method="get" id="city-search">
-            <input type="text" name="city" placeholder="Enter a city name or a postal code" id="city">
-            <input type="submit" value="Get Weather" id="submit-button">
-        </form>
-        <a href="#" id="find-location">Find my location</a>
-        </div>
-        <div id="weather-result">
-            <h3>Weather in <span class="city"></span></h3>
-            <div id="weather-icon">
-                <i id="weather-icon-image" class="fas"></i>
-            </div>
-            <div id="weather-description">
-                <span id="weather-description-value"></span>
-            </div>
-            <div id="weather-temperature">Temperature:
-                <span id="weather-temperature-value"></span>
-            </div>
-            <div id="weather-humidity">Humidity:
-                <span id="weather-humidity-value"></span>
-            </div>
-            <div id="weather-wind">Wind:
-                <span id="weather-wind-value"></span>
-            </div>
-        </div>
-        <div id="events">
-            <h4>Local events in <span class="city"></span></h4>
-        </div>
-        <div id="alerts-notifications">
-            <h4>Alerts &amp; Notifications</h4>
-            <div id="alerts">
-                <h5>Weather Alerts</h5>
-            </div>
-            <div id="notifications">
-                <h5>Notifications</h5>
-            </div>
-        </div>
         <div id="customization">
             <i class="fa-solid fa-sliders" id="customization-button"></i>
             <div id="settings">
@@ -76,20 +38,55 @@
                         <input type="radio" name="theme-color" id="theme-color-dark" value="dark" class="theme-color">
                         <label for="theme-color-dark">Dark</label>
                     </div>
-                    <div id="icon-style">
-                        <h5>Weather Icon Style</h5>
-                        <div id="icon-style-color">
-                            <input type="radio" name="weather-icon-style" id="weather-icon-style-color" value="color" checked>
-                            <label for="weather-icon-style-color">Color</label>
-                        </div>
-                        <div id="icon-style-outline">
-                            <input type="radio" name="weather-icon-style" id="weather-icon-style-outline" value="outline">
-                            <label for="weather-icon-style-outline">Outline</label>
-                    </div>
-                    </div>
                 </div>
         </div>
     </div>
+        <div id="content">
+        <div id="weather-form">
+        <form action="#" method="get" id="city-search">
+            <input type="text" name="city" placeholder="Enter a city name" id="city">
+            <input type="submit" value="Get Weather" id="submit-button">
+        </form>
+        <a href="#" id="find-location">Find my location</a>
+        </div>
+        <div id="weather-result">
+            <h3><span class="city"></span></h3>
+            <div id="weather-description">
+                <span id="weather-description-value"></span>
+            </div>
+            <div id="weather-temperature">
+                <i class="fas fa-thermometer-half"></i>
+                <span id="weather-temperature-value"></span>
+            </div>
+            <div id="weather-humidity">
+                <i class="fas fa-tint"></i>
+                <span id="weather-humidity-value"></span>
+            </div>
+            <div id="weather-wind">
+                <i class="fas fa-wind"></i>
+                <span id="weather-wind-value"></span>
+            </div>
+            <div id="weather-snowfall">
+                <i class="fas fa-snowflake"></i>
+                <span id="weather-snowfall-value"></span>
+            </div>
+            <div id="weather-rain">
+                <i class="fas fa-cloud-rain"></i>
+                <span id="weather-rain-value"></span>
+            </div>
+            <div id="weather-showers">
+                <i class="fas fa-cloud-showers-heavy"></i>
+                <span id="weather-showers-value"></span>
+            </div>
+            <div id="weather-icon"></div>
+        </div>
+        <div id="date-time">
+            <div id="date"></div>
+            <div id="time"></div>
+        </div>
+        <div id="forecast">
+        </div>
+        </div>
     </main>
     <script src="weather-main.js" type="module"></script>
 </body>

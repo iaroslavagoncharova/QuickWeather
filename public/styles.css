@@ -5,13 +5,16 @@ body, html {
 }
 
 :root {
-    --night-dark: #1a1a1a;
+    --dark-blue:  #424874;
+    --light-blue: #c9f9ff;
+    --darker-blue: #C9EAFF;
 }
 
 body {
     background: rgb(127,127,213);
     background: linear-gradient(90deg, rgba(127,127,213,1) 0%, rgba(134,168,231,1) 35%, rgba(145,234,228,1) 100%);
     font-family: 'Outfit', sans-serif;
+    color: var(--dark-blue);
 }
 
 main h1, h2 {
@@ -25,10 +28,10 @@ main {
 
 #content {
     width: 100%;
-    height: 100vh;
+    height: 100%;
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-template-rows: repeat(3, minmax(0, auto));
     align-items: center;
     justify-items: center;
 }
@@ -36,28 +39,44 @@ main {
 #weather-form {
     grid-column: 2 / 3;
     grid-row: 1 / 2;
+    margin: 2rem auto;
+    text-align: start;
+}
+#weather-form a {
+    margin-left: 0.5rem;
 }
 #weather-form input {
     font-family: 'Outfit', sans-serif;
     font-size: 1.2rem;
     padding: 0.5rem;
     border-radius: 7px;
+    color: var(--dark-blue);
+}
+
+#weather-form input[type="submit"] {
+    background-color: var(--dark-blue);
+    color: var(--light-blue);
 }
 #weather-result {
     grid-column: 2 / 3;
     grid-row: 2 / 3;
     display: none;
     text-align: center;
+    flex-direction: column;
+    align-items: center;
+    border: solid 2px var(--dark-blue);
+    border-radius: 7px;
+    padding: 1.5rem;
+    width: 100%;
+    background-color: var(--darker-blue);
 }
-#events {
-    grid-column: 1 / 2;
-    grid-row: 3 / 4;
-    display: none;
+#weather-icon img{
+    height: 100px;
+    width: 100px;
 }
-#alerts-notifications {
-    grid-column: 2 / 3;
-    grid-row: 3 / 4;
-    display: none;
+
+#weather-result div {
+    margin: 0.5rem;
 }
 h1 {
     font-size: 3rem;
@@ -65,9 +84,31 @@ h1 {
     padding: 0;
 }
 
-#settings {
-    display: none;
-    
+#forecast {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    grid-row: 3 / 4;
+    grid-column: 1 / 4;
+    padding: 2rem;
+    gap: 2rem;
+}
+
+.forecast-item {
+    width: 200px;
+    height: 200px;
+    border: solid 2px var(--dark-blue);
+    border-radius: 7px;
+    padding: 0.8rem;
+    text-align: center;
+    background-color: #C9EAFF;
+    color: var(--dark-blue);
+}
+#forecast div img {
+    height: 50px;
+    width: 50px;
 }
 
 #submit-button {
@@ -86,10 +127,41 @@ h1 {
     color: white;
 }
 
+.dark a {
+    color: var(--light-blue);
+}
+
+.dark #weather-form input[type="submit"] {
+    background-color: var(--light-blue);
+    color: var(--dark-blue);
+}
+
+.dark .forecast-item {
+    border: solid 2px var(--light-blue);
+    background-color: var(--dark-blue);
+    color: var(--light-blue);
+}
+
+.dark #settings {
+    background-color: var(--dark-blue);
+    color: var(--light-blue);
+}
+
+.dark #weather-result {
+    border: solid 2px var(--light-blue);
+    background-color: var(--dark-blue);
+    color: var(--light-blue);
+}
+
+.dark {
+    color: var(--light-blue);
+}
+
 #customization-button {
-    position: fixed;
-    top: 148px;
-    left: 94px;
+    position: absolute;
+    left: 0;
+    top: -100px;
+    padding: 2rem;
 }
 
 #weather-description {
@@ -103,6 +175,46 @@ h1 {
     position: relative;
 }
 
+#settings {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: var(--darker-blue);
+    border: solid 2px var(--dark-blue);
+    border-radius: 7px;
+    padding: 2.1rem;
+}
+
 .fas {
     font-size: 1.5rem;
+}
+
+#settings input[type="radio"] {
+    display: none;
+}
+
+#settings label {
+    display: inline-block;
+    padding: 0.2rem;
+    border-radius: 7px;
+    margin: 0.1rem;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+#settings input[type="radio"]:checked + label {
+    border: solid 2px var(--dark-blue);
+}
+
+#settings input[type="radio"]:hover + label:hover {
+    border: solid 2px var(--dark-blue);
+}
+
+.dark #settings input[type="radio"]:checked + label {
+    border: solid 2px var(--light-blue);
+}
+
+.dark #settings input[type="radio"]:hover + label:hover {
+    border: solid 2px var(--light-blue);
 }
