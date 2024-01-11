@@ -57,6 +57,17 @@ main {
     background-color: var(--dark-blue);
     color: var(--light-blue);
 }
+#weather-form input[type="submit"]:hover {
+    cursor: pointer;
+    background-color: var(--light-blue);
+    color: var(--dark-blue);
+    transition: ease-in-out 0.4s;
+}
+.dark #weather-form input[type="submit"]:hover {
+    background-color: var(--dark-blue);
+    color: var(--light-blue);
+}
+
 #weather-result {
     grid-column: 2 / 3;
     grid-row: 2 / 3;
