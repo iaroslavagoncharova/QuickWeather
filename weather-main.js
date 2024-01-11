@@ -1,5 +1,5 @@
-import codes from "./weather-codes.js";
-import getWeatherIconClass from "./weather-icons.js";
+import codes from "./public/weather-codes.js";
+import getWeatherIconClass from "./public/weather-icons.js";
 
 const unitsContainer = document.getElementById('units');
 let currentUnits = '';
