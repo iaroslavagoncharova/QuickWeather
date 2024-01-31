@@ -162,6 +162,99 @@ h1 {
     width: 50px;
 }
 
+/* settings */
+
+#settings {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: var(--darker-blue);
+    border: solid 2px var(--dark-blue);
+    border-radius: 7px;
+    padding: 2.1rem;
+}
+#settings input[type="radio"] {
+    display: none;
+}
+#settings label {
+    display: inline-block;
+    padding: 0.2rem;
+    border-radius: 7px;
+    margin: 0.1rem;
+    font-size: 1rem;
+    cursor: pointer;
+}
+#settings input[type="radio"]:checked + label {
+    border: solid 2px var(--dark-blue);
+}
+#settings input[type="radio"]:hover + label:hover {
+    border: solid 2px var(--dark-blue);
+}
+#customization-button {
+    position: absolute;
+    left: 0;
+    top: -100px;
+    padding: 2rem;
+}
+#customization-button:hover {
+    cursor: pointer;
+}
+#customization {
+    position: relative;
+}
+#not-found {
+    display: none;
+    text-align: center;
+    margin: auto;
+}
+#backgrounds {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#background-upload-form {
+   display: flex;
+    flex-direction: column;
+    padding: 0.5rem;
+}
+#background-upload-form button {
+    margin: 0.4rem;
+    margin-top: 0;
+    padding: 0.5rem;
+    border-radius: 7px;
+    border: solid 1px rgba(15,12,41,1);
+    background-color: var(--dark-blue);
+    color: var(--light-blue);
+}
+#background-upload-form button:hover {
+    cursor: pointer;
+    background-color: var(--light-blue);
+    color: var(--dark-blue);
+    transition: ease-in-out 0.4s;
+}
+#remove-background-button {
+    padding: 0.5rem;
+    border-radius: 7px;
+    border: solid 1px rgba(15,12,41,1);
+    background-color: var(--light-blue);
+    color: var(--dark-blue);
+}
+#remove-background-button:hover {
+    cursor: pointer;
+    background-color: var(--dark-blue);
+    color: var(--light-blue);
+    transition: ease-in-out 0.4s;
+}
+#background-upload-form input {
+    margin: 0.5rem;
+    padding: 0.5rem;
+    border-radius: 7px;
+    border: solid 1px rgba(15,12,41,1);
+    background-color: var(--lighter-blue);
+    color: var(--dark-blue);
+}
+
 /* dark mode rules*/
 
 .dark {
@@ -207,6 +300,32 @@ h1 {
     background-color: var(--dark-blue);
     color: var(--light-blue);
     border: solid 2px var(--light-blue);
+}
+.dark #background-upload-form button {
+    border: solid 1px rgba(255,255,255,1);
+    background-color: var(--light-blue);
+    color: var(--dark-blue);
+}
+.dark #background-upload-form button:hover {
+    background-color: var(--dark-blue);
+    color: var(--light-blue);
+    transition: ease-in-out 0.4s;
+}
+.dark #backgrounds button#remove-background-button {
+    border: solid 1px rgba(255,255,255,1);
+    background-color: var(--darker-blue);
+    color: var(--dark-blue);
+}
+
+.dark #backgrounds button#remove-background-button:hover {
+    background-color: var(--dark-blue);
+    color: var(--light-blue);
+    transition: ease-in-out 0.4s;
+}
+.dark #background-upload-form input {
+    border: solid 1px rgba(255,255,255,1);
+    background-color: var(--dark-blue);
+    color: var(--light-blue);
 }
 
 /* nature mode rules */ 
@@ -259,6 +378,31 @@ h1 {
     color: var(--dark-green);
     border: solid 2px var(--dark-green);
 }
+.nature #background-upload-form button {
+    border: solid 1px rgba(15,12,41,1);
+    background-color: var(--dark-green);
+    color: var(--lighter-green);
+}
+.nature #background-upload-form button:hover {
+    background-color: var(--lighter-green);
+    color: var(--dark-green);
+    transition: ease-in-out 0.4s;
+}
+.nature #backgrounds button#remove-background-button {
+    border: solid 1px rgba(15,12,41,1);
+    background-color: var(--light-green);
+    color: var(--lighter-green);
+}
+.nature #backgrounds button#remove-background-button:hover {
+    background-color: var(--dark-green);
+    color: var(--lighter-green);
+    transition: ease-in-out 0.4s;
+}
+.nature #background-upload-form input {
+    border: solid 1px rgba(15,12,41,1);
+    background-color: var(--lighter-green);
+    color: var(--dark-green);
+}
 
 /* sunset mode rules */
 
@@ -308,6 +452,31 @@ h1 {
     background-color: var(--light-yellow);
     color: var(--dark-orange);
     border: solid 2px var(--dark-orange);
+}
+.sunset #background-upload-form button {
+    border: solid 1px rgba(15,12,41,1);
+    background-color: var(--dark-orange);
+    color: var(--light-yellow);
+}
+.sunset #background-upload-form button:hover {
+    background-color: var(--light-yellow);
+    color: var(--dark-orange);
+    transition: ease-in-out 0.4s;
+}
+.sunset #backgrounds button#remove-background-button {
+    border: solid 1px rgba(15,12,41,1);
+    background-color: var(--light-orange);
+    color: var(--light-yellow);
+}
+.sunset #backgrounds button#remove-background-button:hover {
+    background-color: var(--dark-orange);
+    color: var(--light-yellow);
+    transition: ease-in-out 0.4s;
+}
+.sunset #background-upload-form input {
+    border: solid 1px rgba(15,12,41,1);
+    background-color: var(--light-yellow);
+    color: var(--dark-orange);
 }
 
 /* minimalistic mode rules*/
@@ -360,51 +529,28 @@ h1 {
     color: var(--dark-grey);
     border: solid 2px var(--dark-grey);
 }
-
-/* settings */
-
-#settings {
-    display: none;
-    position: absolute;
-    top: 0;
-    left: 0;
-    background-color: var(--darker-blue);
-    border: solid 2px var(--dark-blue);
-    border-radius: 7px;
-    padding: 2.1rem;
+.minimalistic #background-upload-form button {
+    border: solid 1px rgba(15,12,41,1);
+    background-color: var(--dark-grey);
+    color: var(--lighter-grey);
 }
-#settings input[type="radio"] {
-    display: none;
+.minimalistic #background-upload-form button:hover {
+    background-color: var(--lighter-grey);
+    color: var(--dark-grey);
+    transition: ease-in-out 0.4s;
 }
-#settings label {
-    display: inline-block;
-    padding: 0.2rem;
-    border-radius: 7px;
-    margin: 0.1rem;
-    font-size: 1rem;
-    cursor: pointer;
+.minimalistic #backgrounds button#remove-background-button {
+    border: solid 1px rgba(15,12,41,1);
+    background-color: var(--light-grey);
+    color: var(--dark-grey);
 }
-#settings input[type="radio"]:checked + label {
-    border: solid 2px var(--dark-blue);
+.minimalistic #backgrounds button#remove-background-button:hover {
+    background-color: var(--dark-grey);
+    color: var(--lighter-grey);
+    transition: ease-in-out 0.4s;
 }
-#settings input[type="radio"]:hover + label:hover {
-    border: solid 2px var(--dark-blue);
-}
-#customization-button {
-    position: absolute;
-    left: 0;
-    top: -100px;
-    padding: 2rem;
-}
-#customization-button:hover {
-    cursor: pointer;
-}
-#customization {
-    position: relative;
-}
-
-#not-found {
-    display: none;
-    text-align: center;
-    margin: auto;
+.minimalistic #background-upload-form input {
+    border: solid 1px rgba(15,12,41,1);
+    background-color: var(--lighter-grey);
+    color: var(--dark-grey);
 }

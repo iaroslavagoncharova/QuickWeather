@@ -36,8 +36,6 @@ function checkTime() {
   }
 }
 
-checkTime();
-
 function setTheme(theme) {
   body.classList.remove("dark", "light", "nature", "sunset", "minimalistic");
   body.classList.add(theme);
@@ -596,4 +594,61 @@ cityForm.addEventListener("submit", (event) => {
   city.trim();
   console.log(city);
   getCityByName(city);
+});
+
+function checkBackground() {
+  const storedBackground = window.localStorage.getItem("background");
+  if (storedBackground) {
+    const imageUrl = storedBackground;
+    document.body.style.backgroundImage = `url(${imageUrl})`;
+    document.body.style.backgroundSize = "cover";
+    document.body.style.backgroundPosition = "center";
+    document.body.style.backgroundRepeat = "no-repeat";
+  } else {
+    checkTime();
+  }
+}
+
+checkBackground();
+
+const backgroundUploadForm = document.getElementById('background-upload-form');
+const backgroundUploadInput = document.getElementById('background-upload-input');
+
+backgroundUploadForm.addEventListener('submit', (event) => {
+  event.preventDefault();
+
+  const file = backgroundUploadInput.files[0];
+  if (file) {
+    const reader = new FileReader();
+
+    reader.onload = (e) => {
+      const imageUrl = e.target.result;
+      // Set the image as the background
+      document.body.style.backgroundImage = `url(${imageUrl})`;
+      document.body.style.backgroundSize = "cover";
+      document.body.style.backgroundPosition = "center";
+      document.body.style.backgroundRepeat = "no-repeat";
+      window.localStorage.setItem("background", imageUrl);
+    };
+    
+    reader.readAsDataURL(file);
+  } else {
+    alert("Please upload a file");
+  }
+});
+
+const removeBackgroundButton = document.getElementById('remove-background-button');
+
+removeBackgroundButton.addEventListener('click', () => {
+  if (window.localStorage.getItem('background')) {
+    document.body.style.backgroundImage = 'none';
+    document.body.style.backgroundSize = '';
+    document.body.style.backgroundPosition = '';
+    document.body.style.backgroundRepeat = '';
+    window.localStorage.removeItem('background');
+   checkTime();
+   window.location.reload();
+  } else {
+    alert('No background image to remove');
+  }
 });
