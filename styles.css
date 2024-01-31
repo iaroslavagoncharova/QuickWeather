@@ -17,15 +17,20 @@ body {
     color: var(--dark-blue);
 }
 
-main h1, h2 {
-    text-align: center;
-}
+/* main */
 
 main {
     margin: 2rem;
     padding: 2rem;
 }
-
+main h1, h2 {
+    text-align: center;
+}
+h1 {
+    font-size: 3rem;
+    margin: auto;
+    padding: 0;
+}
 #content {
     width: 100%;
     height: 100%;
@@ -35,6 +40,8 @@ main {
     align-items: center;
     justify-items: center;
 }
+
+/* weather search */
 
 #weather-form {
     grid-column: 2 / 3;
@@ -52,7 +59,11 @@ main {
     border-radius: 7px;
     color: var(--dark-blue);
 }
-
+#submit-button {
+    border: solid 1px rgba(15,12,41,1);
+    border-radius: 7px;
+    padding: 0.5rem;
+}
 #weather-form input[type="submit"] {
     background-color: var(--dark-blue);
     color: var(--light-blue);
@@ -63,10 +74,8 @@ main {
     color: var(--dark-blue);
     transition: ease-in-out 0.4s;
 }
-.dark #weather-form input[type="submit"]:hover {
-    background-color: var(--dark-blue);
-    color: var(--light-blue);
-}
+
+/* weather results */
 
 #weather-result {
     grid-column: 2 / 3;
@@ -81,19 +90,32 @@ main {
     width: 100%;
     background-color: var(--darker-blue);
 }
+#weather-description {
+    font-size: 1.2rem;
+}
 #weather-icon img{
     height: 100px;
     width: 100px;
 }
-
 #weather-result div {
     margin: 0.5rem;
 }
-h1 {
-    font-size: 3rem;
-    margin: auto;
-    padding: 0;
+
+/* weather alerts */
+
+#weather-alerts {
+    grid-column: 2 / 3;
+    grid-row: 3 / 4;
+    text-align: center;
+    flex-direction: column;
+    align-items: center;
+    border: solid 2px var(--dark-blue);
+    border-radius: 7px;
+    padding: 1.5rem;
+    width: 100%;
+    background-color: var(--darker-blue);
 }
+/* seven days forecast */
 
 #forecast {
     display: flex;
@@ -106,10 +128,9 @@ h1 {
     padding: 2rem;
     gap: 2rem;
 }
-
 .forecast-item {
-    width: 200px;
-    height: 200px;
+    width: 220px;
+    height: 220px;
     border: solid 2px var(--dark-blue);
     border-radius: 7px;
     padding: 0.8rem;
@@ -117,74 +138,61 @@ h1 {
     background-color: #C9EAFF;
     color: var(--dark-blue);
 }
+.fas {
+    font-size: 1.3rem;
+    margin: 0.2rem 0.5rem;
+}
 #forecast div img {
     height: 50px;
     width: 50px;
 }
 
-#submit-button {
-    border: solid 1px rgba(15,12,41,1);
-    border-radius: 7px;
-    padding: 0.5rem;
-}
+/* dark mode rules*/
 
 .dark {
     background: rgb(15,12,41);
     background: linear-gradient(90deg, rgba(15,12,41,1) 0%, rgba(48,43,99,1) 35%, rgba(36,36,62,1) 100%);
-    color: white;
+    color: var(--light-blue)
 }
-
-.dark .fas {
-    color: white;
-}
-
-.dark a {
-    color: var(--light-blue);
-}
-
-.dark #weather-form input[type="submit"] {
-    background-color: var(--light-blue);
-    color: var(--dark-blue);
-}
-
-.dark .forecast-item {
-    border: solid 2px var(--light-blue);
-    background-color: var(--dark-blue);
-    color: var(--light-blue);
-}
-
-.dark #settings {
-    background-color: var(--dark-blue);
-    color: var(--light-blue);
-}
-
 .dark #weather-result {
     border: solid 2px var(--light-blue);
     background-color: var(--dark-blue);
     color: var(--light-blue);
 }
-
-.dark {
+.dark .fas {
+    color: white;
+}
+.dark a {
     color: var(--light-blue);
 }
-
-#customization-button {
-    position: absolute;
-    left: 0;
-    top: -100px;
-    padding: 2rem;
+.dark #weather-form input[type="submit"] {
+    background-color: var(--light-blue);
+    color: var(--dark-blue);
+}
+.dark #weather-form input[type="submit"]:hover {
+    background-color: var(--dark-blue);
+    color: var(--light-blue);
+}
+.dark .forecast-item {
+    border: solid 2px var(--light-blue);
+    background-color: var(--dark-blue);
+    color: var(--light-blue);
+}
+.dark #settings {
+    background-color: var(--dark-blue);
+    color: var(--light-blue);
+}
+.dark #settings input[type="radio"]:checked + label {
+    border: solid 2px var(--light-blue);
+}
+.dark #settings input[type="radio"]:hover + label:hover {
+    border: solid 2px var(--light-blue);
+}
+.dark .no-alerts {
+    color: var(--dark-blue);
 }
 
-#weather-description {
-    font-size: 1.2rem;
-}
-#customization-button:hover {
-    cursor: pointer;
-}
-
-#customization {
-    position: relative;
-}
+/* settings */
 
 #settings {
     display: none;
@@ -196,15 +204,9 @@ h1 {
     border-radius: 7px;
     padding: 2.1rem;
 }
-
-.fas {
-    font-size: 1.5rem;
-}
-
 #settings input[type="radio"] {
     display: none;
 }
-
 #settings label {
     display: inline-block;
     padding: 0.2rem;
@@ -213,19 +215,21 @@ h1 {
     font-size: 1rem;
     cursor: pointer;
 }
-
 #settings input[type="radio"]:checked + label {
     border: solid 2px var(--dark-blue);
 }
-
 #settings input[type="radio"]:hover + label:hover {
     border: solid 2px var(--dark-blue);
 }
-
-.dark #settings input[type="radio"]:checked + label {
-    border: solid 2px var(--light-blue);
+#customization-button {
+    position: absolute;
+    left: 0;
+    top: -100px;
+    padding: 2rem;
 }
-
-.dark #settings input[type="radio"]:hover + label:hover {
-    border: solid 2px var(--light-blue);
+#customization-button:hover {
+    cursor: pointer;
+}
+#customization {
+    position: relative;
 }
