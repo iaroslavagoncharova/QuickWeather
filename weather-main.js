@@ -15,67 +15,43 @@ unitsContainer.addEventListener("change", (event) => {
 
 const themeColor = document.getElementById("theme-color");
 let currentTheme = "";
+const body = document.querySelector("body");
+
+function checkTime() {
+  const currentHour = new Date().getHours();
+  const darkModeStartHour = 18;
+  const darkModeEndHour = 7;
+  const storedTheme = window.localStorage.getItem("theme");
+  if (storedTheme) {
+    currentTheme = storedTheme;
+    setTheme(currentTheme);
+  } else {
+    if (currentHour >= darkModeStartHour || currentHour <= darkModeEndHour) {
+      currentTheme = "dark";
+      setTheme(currentTheme);
+    } else {
+      currentTheme = "light";
+      setTheme(currentTheme);
+    }
+  }
+}
+
+checkTime();
+
+function setTheme(theme) {
+  body.classList.remove("dark", "light", "nature", "sunset", "minimalistic");
+  body.classList.add(theme);
+  window.localStorage.setItem("theme", theme);
+  console.log(window.localStorage.getItem("theme"));
+}
 
 themeColor.addEventListener("change", (event) => {
   if (event.target.matches(".theme-color")) {
     currentTheme = event.target.value;
     console.log(currentTheme);
-    updateTheme(currentTheme);
+    setTheme(currentTheme);
   }
 });
-
-// function to update the theme based on user preference
-function updateTheme(theme) {
-  window.localStorage.setItem("theme", theme);
-  updateThemeClasses();
-  window.location.reload();
-}
-
-// function to set the theme based on local storage or default to light
-function setTheme() {
-  let storedTheme = window.localStorage.getItem("theme");
-
-  if (storedTheme) {
-    console.log("Current value:", storedTheme);
-  } else {
-    storedTheme = "light";
-    console.log("Default value:", storedTheme);
-    window.localStorage.setItem("theme", storedTheme);
-  }
-
-  updateThemeClasses();
-}
-
-// function to update theme classes based on dark mode conditions
-function updateThemeClasses() {
-  const body = document.querySelector("body");
-  const currentHour = new Date().getHours();
-  const darkModeStartHour = 18;
-  const darkModeEndHour = 6;
-  const currentStoredTheme = window.localStorage.getItem("theme");
-
-  // check if a user has manually chosen a theme
-  if (currentStoredTheme === "dark" || currentStoredTheme === "light") {
-    body.classList.toggle("dark", currentStoredTheme === "dark");
-  } else {
-    // if not, set the theme based on time
-    body.classList.toggle(
-      "dark",
-      currentHour >= darkModeStartHour || currentHour < darkModeEndHour
-    );
-  }
-
-  // set the checked state for the theme color radio buttons
-  const theme = document.querySelectorAll(".theme-color");
-  theme.forEach((theme) => {
-    if (theme.value === currentStoredTheme) {
-      theme.checked = true;
-    }
-  });
-}
-
-// initialize the theme
-setTheme();
 
 // setting a unit from local storage, if not present, setting celsius as default
 const storedUnits = window.localStorage.getItem("units");
@@ -103,15 +79,29 @@ const getCity = async (lat, lon) => {
         "Content-Type": "application/json",
       },
     });
+    if (!response.ok) {
+      throw new Error(response.statusText);
+    }
     const data = await response.json();
     console.log(data);
     const city = data.city;
     const locality = data.locality;
-    const country = data.countryName;
-    document.querySelectorAll(".city").forEach((cityItem) => {
-      cityItem.innerHTML = `${locality} (${city},  ${country})`;
-    });
-    window.localStorage.setItem("city", `${locality} (${city},  ${country})`);
+    let country = data.countryName;
+    // removing (the) from country name at the end
+    if (country.endsWith("(the)")) {
+      country = country.slice(0, -6);
+    }
+    console.log(locality, city);
+    if (locality.length > 1 && locality !== city) {
+      document.querySelectorAll(".city").forEach((cityItem) => {
+        cityItem.innerHTML = `${locality} (${city}, ${country})`;
+      });
+    } else {
+      document.querySelectorAll(".city").forEach((cityItem) => {
+        cityItem.innerHTML = `${city},  ${country}`;
+      });
+    }
+    window.localStorage.setItem("city", `${city},  ${country}`);
     window.localStorage.setItem("lat", lat);
     window.localStorage.setItem("lon", lon);
     return data;
@@ -200,7 +190,7 @@ const getWeekDay = (date) => {
   return weekDay;
 };
 
-// function to update seven day forecast after getting a city name
+// function to show seven day forecast after getting a city name
 const updateSevenDayForecast = (data) => {
   const weatherCodes = data.daily.weather_code;
   const weatherDescriptions = [];
@@ -514,6 +504,9 @@ document.addEventListener("click", (event) => {
 });
 
 const weatherResult = document.querySelector("#weather-result");
+const alerts = document.querySelector("#weather-alerts");
+const forecast = document.querySelector("#forecast");
+const notfound = document.querySelector("#not-found");
 
 const getWeather = () => {
   navigator.geolocation.getCurrentPosition(success, error, positionOptions);
@@ -522,6 +515,9 @@ const getWeather = () => {
 
 const showWeatherResult = () => {
   weatherResult.style.display = "flex";
+  alerts.style.display = "block";
+  forecast.style.display = "flex";
+  notfound.style.display = "none";
 };
 
 const hideWeatherResult = () => {
@@ -545,8 +541,6 @@ document.addEventListener("DOMContentLoaded", () => {
   if (storedLat !== null && storedLon !== null) {
     console.log(storedLat, storedLon);
     getWeatherForLocation(storedLat, storedLon);
-  } else {
-    hideWeatherResult();
   }
   if (storedCity) {
     document.querySelectorAll(".city").forEach((cityItem) => {
@@ -567,14 +561,30 @@ const getCityByName = async (city) => {
       throw new Error(data.error);
     }
     console.log(data);
+    if (data.length === 0) {
+      cityNotFound();
+      throw new Error("No city found");
+    } else {
     const lat = data[0].lat;
     const lon = data[0].lon;
     console.log(lat, lon);
     await getWeatherForLocation(lat, lon);
     return data;
+    }
   } catch (error) {
     console.log(error);
   }
+};
+
+function cityNotFound() {
+  hideWeatherResult();
+  const notfound = document.getElementById("not-found");
+  notfound.style.display = "block";
+  const forecastDiv = document.getElementById("forecast");
+  forecastDiv.style.display = "none";
+  const alertsDiv = document.getElementById("weather-alerts");
+  alertsDiv.style.display = "none";
+  alert("Please enter a valid city name");
 };
 
 // adding functionality of finding weather for a city
